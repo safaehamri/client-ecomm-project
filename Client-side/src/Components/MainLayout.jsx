@@ -4,6 +4,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import CarouselCustomNavigation from './CarouselCustomNavigation';
 import Categories from './Categories';
+import ProductCard from './ProductCard';
 
 const MainLayout = () => {
     
@@ -53,7 +54,9 @@ const MainLayout = () => {
          <div className=" flex items-center justify-center my-4">
  <Categories/>
 </div>
-
+<div className=" flex items-center justify-center my-4">
+ <ProductCard/>
+</div>
       </div>
 
       {/* Sidebar */}
