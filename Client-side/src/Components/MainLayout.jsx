@@ -3,6 +3,7 @@ import AnnouncementBar from './AnnouncementBar';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import CarouselCustomNavigation from './CarouselCustomNavigation';
+import Categories from './Categories';
 
 const MainLayout = () => {
     
@@ -49,9 +50,9 @@ const MainLayout = () => {
           
          </div>
 
-    
- 
-
+         <div className=" flex items-center justify-center my-4">
+ <Categories/>
+</div>
 
       </div>
 
