@@ -6,6 +6,8 @@ import CarouselCustomNavigation from "./CarouselCustomNavigation";
 import Categories from "./Categories";
 import ProductCard from "./ProductCard";
 import NewArrival from "./NewArrival";
+import FeaturesSection from "./FeaturesSection";
+import BannerSection from "./BannerSection";
 
 const MainLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -61,6 +63,10 @@ const MainLayout = () => {
         </div>
         <div className=" flex  items-center justify-center my-4">
           <NewArrival />
+        </div>
+        <div className=" my-4">
+          <FeaturesSection />
+          <BannerSection />
         </div>
       </div>
 
