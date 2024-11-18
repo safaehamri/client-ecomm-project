@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 export default function Categories() {
   return (
     <>
@@ -13,7 +13,7 @@ export default function Categories() {
           </div>
           <div className="flex-1 flex justify-center items-center">
             <img
-              src="couch-gray.png"
+              src="couch2.png"
               alt="Living Room"
               className="w-full h-auto object-cover"
             />
@@ -26,7 +26,7 @@ export default function Categories() {
           <div className="w-full flex bg-blue-gray-50 p-6">
             <div className="flex-1 flex justify-center items-center">
               <img
-                src="plakar.png"
+                src="plakar2.png"
                 alt="Bedroom"
                 className="w-full h-auto object-cover"
               />
@@ -43,7 +43,7 @@ export default function Categories() {
           <div className="w-full flex bg-blue-gray-50 p-6">
             <div className="flex-1 flex justify-center items-center">
               <img
-                src="toast.png"
+                src="tall-lamp.png"
                 alt="Kitchen"
                 className="w-full h-auto object-cover"
               />
