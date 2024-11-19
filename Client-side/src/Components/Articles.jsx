@@ -23,9 +23,9 @@ export default function Articles() {
   ];
 
   return (
-    <section className="px-6 py-8">
+    <section className="px-4 py-8">
       {/* Header Section */}
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex justify-between  items-center mb-8">
         <h1 className="text-2xl font-bold">Articles</h1>
         <button className="text-sm font-bold text-blue-600 hover:underline">
           More Articles →
@@ -35,16 +35,13 @@ export default function Articles() {
       {/* Articles Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {articles.map((article) => (
-          <div
-            key={article.id}
-            className="flex flex-col items-center text-center  p-4 "
-          >
+          <div key={article.id} className="flex flex-col  text-start  p-4 ">
             <img
               src={article.img}
               alt={article.title}
-              className="w-full h-48 object-cover mb-4 rounded"
+              className="w-full h-auto object-cover mb-4 rounded"
             />
-            <h3 className="text-lg font-semibold mb-2">{article.title}</h3>
+            <h3 className="text-lg font-semibold  mb-2">{article.title}</h3>
             <button className="text-sm font-bold text-blue-600 hover:underline flex items-center">
               {article.btn} <span className="ml-1">→</span>
             </button>
