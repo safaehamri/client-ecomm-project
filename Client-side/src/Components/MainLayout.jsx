@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
 import AnnouncementBar from "./AnnouncementBar";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
@@ -9,6 +10,8 @@ import NewArrival from "./NewArrival";
 import FeaturesSection from "./FeaturesSection";
 import BannerSection from "./BannerSection";
 import Articles from "./Articles";
+import NewsLetter from "./NewsLetter";
+import Footer from "./Footer";
 
 const MainLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -65,11 +68,17 @@ const MainLayout = () => {
         <div className=" flex   items-center justify-center my-4">
           <NewArrival />
         </div>
-        <div className="  my-4">
+        <div className="   my-4">
           <FeaturesSection />
           <BannerSection />
           <Articles />
         </div>
+      </div>
+
+      {/* NewLetter */}
+      <div className="w-full  my-4   ">
+        <NewsLetter />
+        <Footer />
       </div>
 
       {/* Sidebar */}
