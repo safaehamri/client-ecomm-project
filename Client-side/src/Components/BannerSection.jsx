@@ -1,8 +1,6 @@
-import React from "react";
-
 const BannerSection = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center   p-6 lg:p-12">
+    <div className="flex flex-col lg:flex-row items-center    p-6 lg:p-12">
       {/* Image Section */}
       <div className="w-full lg:w-1/2">
         <img
