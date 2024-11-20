@@ -12,6 +12,7 @@ import BannerSection from "./BannerSection";
 import Articles from "./Articles";
 import NewsLetter from "./NewsLetter";
 import Footer from "./Footer";
+import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -22,25 +23,24 @@ const MainLayout = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Top Banner - Full Width */}
+      {/* ----------------------------------------------------------- */}
+      {/* Top Banner -  shareable component Full Width */}
       <div className="text-center ">
         <AnnouncementBar />
       </div>
+      {/* ----------------------------------------------------------- */}
 
       {/* Main Container - 90% Width and Centered */}
       <div className="w-11/12 mx-auto flex flex-col">
-        {/* Header 
-        <header className="flex items-center justify-between">*/}
+        {/* Header   shareable component */}
         <Header toggleSidebar={toggleSidebar} />
-        {/*         </header>
-         */}
+        <Outlet />
+        {/* ----------------------------------------------------------- */}
         {/*Carousel  */}
         <div className="bg-green-600 flex items-center justify-center my-4">
-          {/* Carousel content goes here */}
           <CarouselCustomNavigation />
         </div>
-
-        {/* Main Text Section : grid  cols : is used to iddentify how many items should appear in the colomn */}
+        {/* -----------without creating another component we did it here -------- */}
         <div className="grid grid-cols-1 md:grid-cols-2 items-center px-6 py-10 md:px-12 lg:px-20 w-full">
           <div className=" ">
             <h2 className=" text-[28px] sm:text-[32px] md:text-[40px] lg:text-[50px] xl:text-[56px] font-semibold text-[#121212] leading-tight mb-6">
@@ -52,7 +52,6 @@ const MainLayout = () => {
               Simply Better.
             </h2>
           </div>
-
           <div className="flex flex-col items-center">
             <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 leading-relaxed md:leading-loose">
               <span className="font-semibold text-[#121212]">3legant</span> is a
@@ -61,7 +60,7 @@ const MainLayout = () => {
             </p>
           </div>
         </div>
-
+        {/* ----------------------------------------------------------- */}
         <div className=" flex   items-center justify-center my-4">
           <Categories />
         </div>
@@ -75,9 +74,10 @@ const MainLayout = () => {
         </div>
       </div>
 
-      {/* NewLetter */}
+      {/* NewLetter  those are sharable component*/}
       <div className="w-full  my-4   ">
         <NewsLetter />
+        {/* FOOTER remain consistent  */}
         <Footer />
       </div>
 

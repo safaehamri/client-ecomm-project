@@ -23,10 +23,10 @@ export default function Categories() {
         {/* Right Section: Bedroom and Kitchen */}
         <div className="w-full md:w-1/2 flex flex-col gap-4">
           {/* Bedroom */}
-          <div className="w-full flex bg-blue-gray-50 p-6">
+          <div className="w-full   flex bg-blue-gray-50 p-6">
             <div className="flex-1 flex justify-center items-center">
               <img
-                src="plakar2.png"
+                src="plakar.png"
                 alt="Bedroom"
                 className="w-full h-auto object-cover"
               />
@@ -40,10 +40,10 @@ export default function Categories() {
           </div>
 
           {/* Kitchen */}
-          <div className="w-full flex bg-blue-gray-50 p-6">
+          <div className="w-full flex w bg-blue-gray-50 p-6">
             <div className="flex-1 flex justify-center items-center">
               <img
-                src="tall-lamp.png"
+                src="toast.png"
                 alt="Kitchen"
                 className="w-full h-auto object-cover"
               />

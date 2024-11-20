@@ -1,4 +1,4 @@
-import { Cart, Search, Hamburger } from './Icons';
+import { Cart, Search, Hamburger, Profile, HeartIcon } from "./Icons";
 
 export default function Header({ toggleSidebar }) {
   return (
@@ -9,7 +9,7 @@ export default function Header({ toggleSidebar }) {
         <button onClick={toggleSidebar} className="md:hidden">
           <Hamburger />
         </button>
-        
+
         {/* Logo */}
         <div className="text-lg font-bold">3legant.</div>
       </div>
@@ -22,10 +22,16 @@ export default function Header({ toggleSidebar }) {
         <a href="/shop" className="text-gray-500 hover:text-black font-medium">
           Shop
         </a>
-        <a href="/product" className="text-gray-500 hover:text-black font-medium">
+        <a
+          href="/product"
+          className="text-gray-500 hover:text-black font-medium"
+        >
           Product
         </a>
-        <a href="/contact" className="text-gray-500 hover:text-black font-medium">
+        <a
+          href="/contact"
+          className="text-gray-500 hover:text-black font-medium"
+        >
           Contact Us
         </a>
       </div>
@@ -36,6 +42,12 @@ export default function Header({ toggleSidebar }) {
         <div className="hidden md:flex items-center space-x-4">
           <button>
             <Search />
+          </button>
+          <button>
+            <Profile />
+          </button>
+          <button>
+            <HeartIcon />
           </button>
           <button className="relative">
             <Cart />

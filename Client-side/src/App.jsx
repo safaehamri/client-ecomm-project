@@ -1,21 +1,23 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import BaseLayout from "./Components/BaseLayout";
+import HomePageLayout from "./Components/HomePageLayout";
+import PlaceholderPage from "./Components/PlaceholderPage";
+import Home from "./Components/Home";
 
-import './App.css'
-//import AnnouncementBar from './Components/AnnouncementBar'
-//import AutomatioSlideShow from './Components/AutomatioSlideShow'
-//import Header from './Components/Header'
-import MainLayout from './Components/MainLayout';
 export default function App() {
-  
   return (
-    <>
- {/*  <div className='Main-Layout  min-h-screen bg-green-50 flex flex-col '>
-<AnnouncementBar/>
-<Header/>
- <AutomatioSlideShow slides={slides} />
-  </div> */}
-  
-<MainLayout/>
-
-    </>
-  )
+    <Router>
+      <Routes>
+        {/* BaseLayout includes shared components */}
+        {/* BaseLayout wraps all pages */}
+        <Route path="/" element={<BaseLayout />}>
+          <Route index element={<Home />} />
+          {/* Other Pages */}
+          <Route path="shop" element={<PlaceholderPage />} />
+          <Route path="product" element={<PlaceholderPage />} />
+          <Route path="contact" element={<PlaceholderPage />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
