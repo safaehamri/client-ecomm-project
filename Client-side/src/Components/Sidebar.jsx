@@ -9,8 +9,14 @@ import {
   Facebook,
   YouTube,
 } from "./Icons";
+import SideCart from "./SideCart";
+import { useState } from "react";
+useState;
 
 const Sidebar = ({ isOpen, onClose }) => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const toggleCart = () => setIsCartOpen((prev) => !prev);
   return (
     <div
       className={`fixed top-0 left-0 h-full bg-white w-3/4 p-4 transition-transform transform ${
@@ -54,16 +60,24 @@ const Sidebar = ({ isOpen, onClose }) => {
 
       {/* Bottom Section */}
       <div>
-        {/* Cart and Wishlist */}
+        {/*Cart and Wishlist*/}
         <div className="space-y-4 mb-4">
           <div className="flex items-center justify-between">
             <span>Cart</span>
-            <div className="flex items-center ">
+            {/*   <div className="flex items-center ">
               <Cart />
               <span className="ml-2 bg-black text-white rounded-full text-xs px-2">
                 2
               </span>
-            </div>
+            </div> */}
+            <button className="relative " onClick={toggleCart}>
+              <Cart />
+              {/* Cart Badge */}
+              <span className="absolute -top-2 -right-2 bg-black text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                2
+              </span>
+            </button>
+            <SideCart isOpen={isCartOpen} toggleCart={toggleCart} />
           </div>
           <div className="flex items-center justify-between">
             <span>Wishlist</span>
@@ -100,3 +114,4 @@ Sidebar.propTypes = {
 };
 
 export default Sidebar;
+//this sidebar that shows the navbar but in responsiv view
