@@ -1,6 +1,18 @@
-import { HeartIcon, FiveStars } from "./Icons";
-
+import { HeartIcon } from "./Icons";
+import { useDispatch } from "react-redux";
+import { addItem } from "../cartSlice";
 const ProductCard = ({ img, name, price, originalPrice }) => {
+  const dispatch = useDispatch();
+  const handleAddToCart = () => {
+    dispatch(
+      addItem({
+        id: name, // Use a unique ID for each product
+        img,
+        name,
+        price: parseFloat(price.replace("$", "")), // Convert price to a number
+      })
+    );
+  };
   return (
     <div className="bg-white mb-4 relative w-full max-w-[262px] h-[400px] sm:h-[450px] items-start rounded-lg border flex flex-col border-gray-200 shadow-md group overflow-hidden font-poppins">
       {/* Badge Section */}
@@ -27,7 +39,10 @@ const ProductCard = ({ img, name, price, originalPrice }) => {
         />
 
         {/* Add to Cart Button */}
-        <button className="absolute w-[70%] bottom-3 left-1/2 transform -translate-x-1/2 bg-black text-white text-[11px] sm:text-sm font-medium py-2 px-4 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <button
+          onClick={handleAddToCart}
+          className="absolute w-[70%] bottom-3 left-1/2 transform -translate-x-1/2 bg-black text-white text-[11px] sm:text-sm font-medium py-2 px-4 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        >
           Add to cart
         </button>
       </div>

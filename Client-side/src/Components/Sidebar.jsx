@@ -1,11 +1,20 @@
-import PropTypes from 'prop-types';
-import { Close, Search, Cart, Wishlist, Dropdown, Instagram, Facebook, YouTube } from './Icons';
+import PropTypes from "prop-types";
+import {
+  Close,
+  Search,
+  Cart,
+  Wishlist,
+  Dropdown,
+  Instagram,
+  Facebook,
+  YouTube,
+} from "./Icons";
 
 const Sidebar = ({ isOpen, onClose }) => {
   return (
     <div
       className={`fixed top-0 left-0 h-full bg-white w-3/4 p-4 transition-transform transform ${
-        isOpen ? 'translate-x-0' : '-translate-x-full'
+        isOpen ? "translate-x-0" : "-translate-x-full"
       } flex flex-col justify-between`}
     >
       {/* Top Section */}
@@ -41,8 +50,6 @@ const Sidebar = ({ isOpen, onClose }) => {
           </div>
           <div>Contact Us</div>
         </div>
-
-       
       </div>
 
       {/* Bottom Section */}
@@ -51,28 +58,30 @@ const Sidebar = ({ isOpen, onClose }) => {
         <div className="space-y-4 mb-4">
           <div className="flex items-center justify-between">
             <span>Cart</span>
-            <div className="flex items-center">
+            <div className="flex items-center ">
               <Cart />
-              <span className="ml-2 bg-black text-white rounded-full text-xs px-2">2</span>
+              <span className="ml-2 bg-black text-white rounded-full text-xs px-2">
+                2
+              </span>
             </div>
           </div>
           <div className="flex items-center justify-between">
             <span>Wishlist</span>
             <div className="flex items-center">
               <Wishlist />
-              <span className="ml-2 bg-black text-white rounded-full text-xs px-2">2</span>
+              <span className="ml-2 bg-black text-white rounded-full text-xs px-2">
+                2
+              </span>
             </div>
           </div>
 
           <div className="flex items-center justify-between">
-           {/* Sign In Button */}
-        <button className="w-full mt-6 bg-black text-white py-2 rounded-md">
-          Sign In
-        </button>
+            {/* Sign In Button */}
+            <button className="w-full mt-6 bg-black text-white py-2 rounded-md">
+              Sign In
+            </button>
+          </div>
         </div>
-        </div>
-
-
 
         {/* Social Media Icons */}
         <div className="flex justify-around">

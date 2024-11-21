@@ -1,6 +1,11 @@
 import { Cart, Search, Hamburger, Profile, HeartIcon } from "./Icons";
+import SideCart from "./SideCart";
+import { useState } from "react";
 
 export default function Header({ toggleSidebar }) {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const toggleCart = () => setIsCartOpen((prev) => !prev);
+
   return (
     <div className="flex items-center justify-between w-full p-4">
       {/* Logo with Hamburger Icon on the left */}
@@ -39,7 +44,7 @@ export default function Header({ toggleSidebar }) {
       {/* Icons (Search and Cart) - shown on desktop, hamburger icon for mobile */}
       <div className="flex items-center space-x-4">
         {/* Desktop Icons (Search and Cart) */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className=" md:flex items-center space-x-4">
           <button>
             <Search />
           </button>
@@ -49,13 +54,14 @@ export default function Header({ toggleSidebar }) {
           <button>
             <HeartIcon />
           </button>
-          <button className="relative">
+          <button className="relative " onClick={toggleCart}>
             <Cart />
             {/* Cart Badge */}
             <span className="absolute -top-2 -right-2 bg-black text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
               2
             </span>
           </button>
+          <SideCart isOpen={isCartOpen} toggleCart={toggleCart} />
         </div>
       </div>
     </div>

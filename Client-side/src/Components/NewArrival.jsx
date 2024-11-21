@@ -9,6 +9,7 @@ const NewArrival = () => {
   const [progress, setProgress] = useState(0); // Progress bar value
   const sliderContainerRef = useRef(null);
   console.log(sliderContainerRef);
+
   const sliderItems = [
     {
       img: "Couch.png",
