@@ -1,8 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import BaseLayout from "./Components/BaseLayout";
-import HomePageLayout from "./Components/HomePageLayout";
-import PlaceholderPage from "./Components/PlaceholderPage";
-import Home from "./Components/Home";
+import BaseLayout from "./Components/Layout/BaseLayout";
+import PlaceholderPage from "./Components/Common/PlaceholderPage";
+import Home from "./Pages/Home";
 
 export default function App() {
   return (
