@@ -16,7 +16,7 @@ function AutomatioSlideShow({ slides }) {
 
 function SlideItem({ slide }) {
   return (
-    <Paper className="      w-full h-80 sm:w-3/4 sm:h-[400px] flex justify-center items-center">
+    <Paper className="w-full h-80 sm:w-3/4 sm:h-[400px] flex justify-center items-center">
       <img
         src={slide.image}
         alt={slide.alt}

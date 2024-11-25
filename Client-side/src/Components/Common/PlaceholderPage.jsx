@@ -1,6 +1,6 @@
 const PlaceholderPage = () => {
   return (
-    <div className="bg-gray-100 min-h-screen p-4">
+    <div className="bg-gray-400 min-h-screen p-4">
       {/* Shop Page Header */}
       <ShopPageHeader />
 
@@ -26,9 +26,10 @@ const PlaceholderPage = () => {
 };
 
 const ShopPageHeader = () => (
-  <div className="bg-blue-300 h-32 rounded-md flex items-center justify-center sm:h-40 md:h-48">
-    {/* Placeholder */}
-    <div className="text-white text-lg font-bold">Header</div>
+  <div className="bg-blue-300  rounded-md flex items-center justify-center sm:h-40 md:h-48">
+    <div className="h-full    object-center">
+      <img src="../../../public/article1.jpeg" alt="" />
+    </div>
   </div>
 );
 

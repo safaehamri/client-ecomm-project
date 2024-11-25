@@ -1,11 +1,7 @@
+/* eslint-disable react/prop-types */
 import { Cart, Search, Hamburger, Profile, HeartIcon } from "../Common/Icons";
-import SideCart from "../Product/SideCart";
-import { useState } from "react";
 
-export default function Header({ toggleSidebar }) {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const toggleCart = () => setIsCartOpen((prev) => !prev);
-
+export default function Header({ toggleSidebar, toggleCart, toggleWishlist }) {
   return (
     <div className="flex items-center justify-between w-full p-4">
       {/* Logo with Hamburger Icon on the left */}
@@ -41,27 +37,24 @@ export default function Header({ toggleSidebar }) {
         </a>
       </div>
 
-      {/* Icons (Search and Cart) - shown on desktop, hamburger icon for mobile */}
+      {/* Icons (Search and Cart) */}
       <div className="flex items-center space-x-4">
-        {/* Desktop Icons (Search and Cart) */}
-        <div className=" md:flex items-center space-x-4">
+        <div className="md:flex items-center space-x-4">
           <button>
             <Search />
           </button>
           <button>
             <Profile />
           </button>
-          <button>
+          <button onClick={toggleWishlist}>
             <HeartIcon />
           </button>
-          <button className="relative " onClick={toggleCart}>
+          <button className="relative" onClick={toggleCart}>
             <Cart />
-            {/* Cart Badge */}
             <span className="absolute -top-2 -right-2 bg-black text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
               2
             </span>
           </button>
-          <SideCart isOpen={isCartOpen} toggleCart={toggleCart} />
         </div>
       </div>
     </div>

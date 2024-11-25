@@ -1,14 +1,14 @@
+/* eslint-disable react/prop-types */
 import { useSelector, useDispatch } from "react-redux";
 import {
   removeItem,
-  clearCart,
   incrementItem,
   decrementItem,
 } from "../../Redux/cartSlice";
 import { Close } from "../Common/Icons";
 
 const SideCart = ({ isOpen, toggleCart }) => {
-  const cartItems = useSelector((state) => state.cart.items); // Access cart items from Redux
+  const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
   // Calculate total price
@@ -44,7 +44,6 @@ const SideCart = ({ isOpen, toggleCart }) => {
                   key={item.id}
                   className="flex items-start justify-between space-x-4 border-b pb-4"
                 >
-                  {/* Product Image and Details */}
                   <div className="flex space-x-4">
                     <img
                       src={item.img}
@@ -61,11 +60,9 @@ const SideCart = ({ isOpen, toggleCart }) => {
                       </p>
                     </div>
                   </div>
-
-                  {/* Quantity Controls */}
                   <div className="flex flex-col items-center space-y-2">
                     <button
-                      onClick={() => dispatch(incrementItem({ id: item.id }))}
+                      onClick={() => dispatch(incrementItem({ id: item.id }))} //DISPATCHE AU REDUCER ET ENVOYER LE PARAM ID
                       className="px-2 py-1 bg-gray-200 rounded text-sm hover:bg-gray-300"
                     >
                       +
@@ -78,8 +75,6 @@ const SideCart = ({ isOpen, toggleCart }) => {
                       -
                     </button>
                   </div>
-
-                  {/* Remove Item */}
                   <button
                     onClick={() => dispatch(removeItem({ id: item.id }))}
                     className="text-red-500 hover:text-red-600 transition"
@@ -100,13 +95,11 @@ const SideCart = ({ isOpen, toggleCart }) => {
                 <p>Total</p>
                 <p>${totalPrice.toFixed(2)}</p>
               </div>
-
-              {/* Checkout and View Cart Buttons */}
               <div className="mt-6 space-y-2">
                 <button className="w-full py-2 bg-black text-white font-medium text-sm rounded hover:bg-gray-800 transition">
                   Checkout
                 </button>
-                <button className="w-full py-7 bg-gray-100 text-gray-800 font-medium text-sm rounded hover:bg-gray-200 transition">
+                <button className="w-full py-2 bg-gray-100 text-gray-800 font-medium text-sm rounded hover:bg-gray-200 transition">
                   View Cart
                 </button>
               </div>
