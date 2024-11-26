@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BaseLayout from "./Components/Layout/BaseLayout";
 import PlaceholderPage from "./Components/Common/PlaceholderPage";
 import Home from "./Pages/Home";
+import Shop from "./Pages/Shop";
 
 export default function App() {
   return (
@@ -12,7 +13,7 @@ export default function App() {
         <Route path="/" element={<BaseLayout />}>
           <Route index element={<Home />} />
           {/* Other Pages */}
-          <Route path="shop" element={<PlaceholderPage />} />
+          <Route path="shop" element={<Shop />} />
           <Route path="product" element={<PlaceholderPage />} />
           <Route path="contact" element={<PlaceholderPage />} />
         </Route>

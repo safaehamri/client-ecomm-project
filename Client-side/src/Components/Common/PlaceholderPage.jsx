@@ -1,6 +1,6 @@
 const PlaceholderPage = () => {
   return (
-    <div className="bg-gray-400 min-h-screen p-4">
+    <div className="bg-gray-50 min-h-screen p-4">
       {/* Shop Page Header */}
       <ShopPageHeader />
 
@@ -26,10 +26,18 @@ const PlaceholderPage = () => {
 };
 
 const ShopPageHeader = () => (
-  <div className="bg-blue-300  rounded-md flex items-center justify-center sm:h-40 md:h-48">
-    <div className="h-full    object-center">
-      <img src="../../../public/article1.jpeg" alt="" />
-    </div>
+  <div
+    className="h-48 w-full rounded-md bg-cover bg-center flex flex-col items-center justify-center text-white"
+    style={{ backgroundImage: "url('/image.png')" }}
+  >
+    {/* Breadcrumb */}
+    <p className="text-sm mb-2">Home &gt; Shop</p>
+
+    {/* Heading */}
+    <h1 className="text-2xl font-bold">Shop Page</h1>
+
+    {/* Subtext */}
+    <p className="text-base">Let's design the place you always imagined.</p>
   </div>
 );
 
