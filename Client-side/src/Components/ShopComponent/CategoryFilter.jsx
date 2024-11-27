@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function CategoryFilter() {
-  const [selectedOption, setSelectedOption] = useState("Price: High to Low");
+  const [selectedOption, setSelectedOption] = useState("categories");
   const [isOpen, setIsOpen] = useState(false);
 
   const options = ["Furniture", "Kitchen", "Decor"];
