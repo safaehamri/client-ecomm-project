@@ -2,14 +2,16 @@ import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { useState, useEffect, useRef } from "react";
 import { Snackbar, Alert, useMediaQuery } from "@mui/material";
-import WishlistProductCard from "./WishlistProductCard";
-import { removeFromWishlist } from "../../Redux/actions/wishlistActions";
-import { addToCart } from "../../Redux/actions/cartActions";
+import CartProductCard from "./CartProductCard";
+import {
+  removeFromCart,
+  updateCartQuantity,
+} from "../../Redux/actions/cartActions";
 import { gsap } from "gsap";
 
-const WishlistSidebar = ({ isOpen, onClose }) => {
+const CartSidebar = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
-  const wishlistItems = useSelector((state) => state.wishlist.wishlistItems);
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
   const sidebarRef = useRef(null);
   const itemsRef = useRef([]);
@@ -24,33 +26,31 @@ const WishlistSidebar = ({ isOpen, onClose }) => {
     setSnackbarOpen(false);
   };
 
-  const addAllToCart = () => {
-    wishlistItems.forEach((item) => dispatch(addToCart(item)));
-    setSnackbarMessage("All wishlist items added to cart");
-    setSnackbarSeverity("success");
-    setSnackbarOpen(true);
-    onClose();
-  };
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
-  const handleAddToCart = (item) => {
-    dispatch(addToCart(item));
-    setSnackbarMessage(`${item.title} added to cart`);
+  const handleQuantityChange = (productId, newQuantity) => {
+    dispatch(updateCartQuantity(productId, newQuantity));
+    setSnackbarMessage("Cart updated");
     setSnackbarSeverity("success");
     setSnackbarOpen(true);
   };
 
-  const handleRemoveFromWishlist = (itemId) => {
-    dispatch(removeFromWishlist(itemId));
-    setSnackbarMessage("Item removed from wishlist");
+  const handleRemoveFromCart = (productId) => {
+    dispatch(removeFromCart(productId));
+    setSnackbarMessage("Item removed from cart");
     setSnackbarSeverity("info");
     setSnackbarOpen(true);
   };
 
+  // GSAP Animation for Sidebar and Items
   useEffect(() => {
     const sidebar = sidebarRef.current;
 
     if (isOpen) {
-      // Sidebar slide-in
+      // Sidebar entrance
       gsap.to(sidebar, {
         x: 0,
         duration: 0.3,
@@ -65,7 +65,7 @@ const WishlistSidebar = ({ isOpen, onClose }) => {
         ease: "power1.out",
       });
     } else {
-      // Sidebar slide-out
+      // Sidebar exit
       gsap.to(sidebar, {
         x: "100%",
         duration: 0.3,
@@ -99,46 +99,53 @@ const WishlistSidebar = ({ isOpen, onClose }) => {
       >
         {/* Header */}
         <div className="p-4 flex justify-between items-center border-b">
-          <h2 className="text-lg font-bold">Wishlist</h2>
+          <h2 className="text-lg font-bold">Cart</h2>
           <button onClick={onClose} className="text-gray-600">
             ✕
           </button>
         </div>
 
-        {/* Wishlist Items */}
+        {/* Cart Items Section */}
         <div className="flex-1 overflow-y-auto p-4">
-          {wishlistItems.map((item, index) => (
-            <WishlistProductCard
+          {cartItems.map((item, index) => (
+            <CartProductCard
               key={item.id}
               productId={item.id}
               image={item.image}
               title={item.title}
-              color={item.color || "Default"}
+              color={item.color}
               price={item.price}
-              onRemove={() => handleRemoveFromWishlist(item.id)}
-              onAddToCart={() => handleAddToCart(item)}
+              quantity={item.quantity}
+              onRemove={() => handleRemoveFromCart(item.id)}
+              onQuantityChange={(newQuantity) =>
+                handleQuantityChange(item.id, newQuantity)
+              }
               ref={(el) => (itemsRef.current[index] = el)} // Store item references
             />
           ))}
-          {wishlistItems.length === 0 && (
-            <p className="text-gray-600">Your wishlist is empty.</p>
+          {cartItems.length === 0 && (
+            <p className="text-gray-600">Your cart is empty.</p>
           )}
         </div>
 
-        {/* Footer */}
+        {/* Footer Section */}
         <div className="p-4 border-t bg-white">
-          <button
-            onClick={addAllToCart}
-            className="w-full bg-black text-white py-2 mt-4"
-            disabled={wishlistItems.length === 0}
-          >
-            Add All to Cart
+          <div className="flex justify-between mb-2">
+            <p>Subtotal</p>
+            <p>${subtotal.toFixed(2)}</p>
+          </div>
+          <div className="flex justify-between font-bold text-lg">
+            <p>Total</p>
+            <p>${subtotal.toFixed(2)}</p>
+          </div>
+          <button className="w-full bg-black text-white py-2 mt-4">
+            Checkout
           </button>
           <button
             onClick={onClose}
             className="w-full bg-gray-200 text-black py-2 mt-2"
           >
-            Close Wishlist
+            View Cart
           </button>
         </div>
       </div>
@@ -176,9 +183,9 @@ const WishlistSidebar = ({ isOpen, onClose }) => {
   );
 };
 
-WishlistSidebar.propTypes = {
+CartSidebar.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
-export default WishlistSidebar;
+export default CartSidebar;

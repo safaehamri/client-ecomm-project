@@ -37,7 +37,9 @@ const ShopPageHeader = () => (
     <h1 className="text-2xl font-bold">Shop Page</h1>
 
     {/* Subtext */}
-    <p className="text-base">Let's design the place you always imagined.</p>
+    <p className="text-base">
+      Let&apos;s design the place you always imagined.
+    </p>
   </div>
 );
 

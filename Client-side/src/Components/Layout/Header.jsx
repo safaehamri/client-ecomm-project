@@ -1,62 +1,106 @@
-/* eslint-disable react/prop-types */
-import { Cart, Search, Hamburger, Profile, HeartIcon } from "../Common/Icons";
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Cart, Hamburger, Search, Profile, Wishlist } from "../Common/Icons";
+import Sidebar from "../Sections/Sidebar";
+import CartSidebar from "../Product/CartSidebar";
+import WishlistSidebar from "../Product/WishlistSidebar";
+import { isAuthenticated } from "../../utils/auth";
 
-export default function Header({ toggleSidebar, toggleCart, toggleWishlist }) {
+const Header = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const wishlistItems = useSelector((state) => state.wishlist.wishlistItems);
+
+  const navigate = useNavigate();
+
+  // Handlers for Sidebars
+  const openSidebar = () => setIsSidebarOpen(true);
+  const closeSidebar = () => setIsSidebarOpen(false);
+  const toggleCart = () => setIsCartOpen((prev) => !prev);
+  const toggleWishlist = () => setIsWishlistOpen((prev) => !prev);
+
   return (
-    <div className="flex items-center justify-between w-full p-4">
-      {/* Logo with Hamburger Icon on the left */}
-      <div className="flex items-center space-x-2">
-        {/* Hamburger Icon (visible on mobile) */}
-        <button onClick={toggleSidebar} className="md:hidden">
-          <Hamburger />
+    <header className="w-full bg-white p-4 flex items-center justify-between shadow-md">
+      {/* Left Section */}
+      <div className="flex items-center">
+        <button onClick={openSidebar} className="md:hidden mr-2">
+          <Hamburger className="w-6 h-6 text-gray-700" />
         </button>
-
-        {/* Logo */}
-        <div className="text-lg font-bold">3legant.</div>
+        <div className="text-lg font-bold text-gray-900">3legant.</div>
       </div>
 
-      {/* Navigation Links (hidden on mobile, shown on desktop) */}
-      <div className="hidden md:flex space-x-8">
-        <a href="/" className="text-gray-800 hover:text-black font-medium">
+      {/* Center Section */}
+      <nav className="hidden md:flex space-x-8 text-gray-700 text-sm font-medium">
+        <NavLink to="/" className="hover:text-gray-900">
           Home
-        </a>
-        <a href="/shop" className="text-gray-500 hover:text-black font-medium">
+        </NavLink>
+        <NavLink to="/shop" className="hover:text-gray-900">
           Shop
-        </a>
-        <a
-          href="/product"
-          className="text-gray-500 hover:text-black font-medium"
-        >
+        </NavLink>
+        <NavLink to="/product" className="hover:text-gray-900">
           Product
-        </a>
-        <a
-          href="/contact"
-          className="text-gray-500 hover:text-black font-medium"
-        >
+        </NavLink>
+        <NavLink to="/contact" className="hover:text-gray-900">
           Contact Us
-        </a>
-      </div>
+        </NavLink>
+      </nav>
 
-      {/* Icons (Search and Cart) */}
+      {/* Right Section */}
       <div className="flex items-center space-x-4">
-        <div className="md:flex items-center space-x-4">
-          <button>
-            <Search />
-          </button>
-          <button>
-            <Profile />
-          </button>
-          <button onClick={toggleWishlist}>
-            <HeartIcon />
-          </button>
-          <button className="relative" onClick={toggleCart}>
-            <Cart />
-            <span className="absolute -top-2 -right-2 bg-black text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
-              2
+        <div className="hidden md:block w-5 h-5 rounded-full">
+          <Search />
+        </div>
+        <div
+          className="hidden md:block w-5 h-5 rounded-full cursor-pointer"
+          onClick={() => {
+            if (!isAuthenticated()) {
+              navigate("/signin");
+            } else {
+              navigate("/profile");
+            }
+          }}
+        >
+          <Profile />
+        </div>
+        {/* Wishlist Icon */}
+        <div className="relative cursor-pointer" onClick={toggleWishlist}>
+          <Wishlist />
+          {wishlistItems.length > 0 && (
+            <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {wishlistItems.length}
             </span>
-          </button>
+          )}
+        </div>
+        {/* Cart Icon */}
+        <div className="relative cursor-pointer" onClick={toggleCart}>
+          <Cart />
+          {cartItems.length > 0 && (
+            <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {cartItems.length}
+            </span>
+          )}
         </div>
       </div>
-    </div>
+
+      {/* Sidebar */}
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={closeSidebar}
+        onCartClick={toggleCart}
+        onWishlistClick={toggleWishlist}
+      />
+
+      {/* Cart Sidebar */}
+      <CartSidebar isOpen={isCartOpen} onClose={toggleCart} />
+
+      {/* Wishlist Sidebar */}
+      <WishlistSidebar isOpen={isWishlistOpen} onClose={toggleWishlist} />
+    </header>
   );
-}
+};
+
+export default Header;

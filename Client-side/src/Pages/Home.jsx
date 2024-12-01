@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom";
 import CarouselCustomNavigation from "../Components/Common/CarouselCustomNavigation";
 import Categories from "../Components/Sections/Categories";
 import NewArrival from "../Components/Sections/NewArrival";
@@ -52,7 +51,6 @@ const Home = () => {
       </div>
 
       {/* Nested Routes (if needed) */}
-      <Outlet />
     </div>
   );
 };
