@@ -6,12 +6,13 @@ import {
 
 const initialState = {
   cartItems: JSON.parse(localStorage.getItem("cartItems")) || [],
-};
+}; // nous renvoi les items qui sont deja dans le lS sinon renvoi un array empty
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
       const existingItemIndex = state.cartItems.findIndex(
+        //
         (item) => item.id === action.payload.id
       );
 
@@ -32,6 +33,7 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cartItems: state.cartItems.filter((item) => item.id !== action.payload),
       };
+      // action .payload = contient le produit dont le user veut supprimer , alors , on a creer une deuxieme list , donc on loup sur tous les items , si on coincide avec le meme id du produit dont on va sauter ce produits et la nouvelle liste va contenir tous les produits sauf celui choisi par le user
     }
 
     case UPDATE_CART_QUANTITY: {

@@ -7,8 +7,8 @@ import {
   addToWishlist,
   removeFromWishlist,
 } from "../../Redux/actions/wishlistActions";
-import ProductDialog from "../Common/ProductDialog";
-import SnackbarNotification from "../Common/SnackbarNotification";
+import ProductDialog from "../Common/ProductDialog"; // the box displayed when we click on view product
+import SnackbarNotification from "../Common/SnackbarNotification"; // a discuter §§§§
 import { HeartIcon, FiveStars } from "../Common/Icons";
 import { generateCloudinaryUrl } from "../../utils/cloudinaryUtils";
 
@@ -21,23 +21,22 @@ const UnifiedProductCard = ({
   const transformedImage = generateCloudinaryUrl(
     product.image,
     viewMode === "list"
-      ? "w_300,h_300,c_fill,q_auto,f_auto"
-      : "w_500,h_500,c_fill,q_auto,f_auto"
+      ? "w_300,h_300,c_fill,q_auto,f_auto" // si on veut list , on doit appliquer ce style sur l'image
+      : "w_500,h_500,c_fill,q_auto,f_auto" // SINON (GRID ) DONC  CE STYLE SERA APPLIQUER
   );
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const wishlistItems = useSelector((state) => state.wishlist.wishlistItems);
-  const isInWishlist = wishlistItems.some((item) => item.id === product.id);
+  const isInWishlist = wishlistItems.some((item) => item.id === product.id); // VERIFI EST CE QUE LE PRODUIT EXISTE DEJA DAND LE WISHLIST ITEMS OU PAS
 
   const [snackbarQueue, setSnackbarQueue] = useState([]);
   const [currentSnackbar, setCurrentSnackbar] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
+  //-----------------a discuter apres-----------------------------------------------------
   const enqueueSnackbar = useCallback((message, severity) => {
     setSnackbarQueue((prevQueue) => [...prevQueue, { message, severity }]);
   }, []);
-
   useEffect(() => {
     if (!currentSnackbar && snackbarQueue.length > 0) {
       setCurrentSnackbar(snackbarQueue[0]);
@@ -46,6 +45,7 @@ const UnifiedProductCard = ({
   }, [currentSnackbar, snackbarQueue]);
 
   const handleSnackbarClose = () => setCurrentSnackbar(null);
+  //----------------------------------------------------------------------
 
   const handleAddToCart = () => {
     dispatch(addToCart({ ...product, color: "Default" }));
@@ -74,10 +74,12 @@ const UnifiedProductCard = ({
   const handleViewProduct = () => {
     useNavigation ? navigate(`/product/${product.id}`) : setIsDialogOpen(true);
   };
-
+  //----------------------------------------------------------------------------
+  //  truncates a text string to a specified maximum length and appends an ellipsis (...)
+  // if the text exceeds that length.
   const getTruncatedDescription = (text, maxLength = 80) =>
     text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
-
+  //----------------------------------------------------------------------------
   const containerClasses = {
     grid: "flex flex-col border bg-white shadow-md hover:shadow-xl rounded-lg transition-shadow duration-300 p-4",
     list: "grid grid-cols-[auto_1fr] gap-6 items-stretch bg-white shadow-md hover:shadow-xl rounded-lg transition-shadow duration-300 p-6",

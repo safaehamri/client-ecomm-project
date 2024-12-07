@@ -1,33 +1,27 @@
-const FeaturesSection = () => {
+const FeatureContact = () => {
   const features = [
     {
       id: 1,
       icon: "🚚",
-      title: "Free Shipping",
-      description: "Order above $200",
+      title: "Address",
+      description: "234 Hai Trieu, HCMC, Vietnam",
     },
     {
       id: 2,
       icon: "💳",
-      title: "Money-back",
-      description: "30 days guarantee",
+      title: "Contact Us",
+      description: "+84 123 567 890",
     },
     {
       id: 3,
       icon: "🔒",
-      title: "Secure Payments",
-      description: "Secured by Stripe",
-    },
-    {
-      id: 4,
-      icon: "📞",
-      title: "24/7 Support",
-      description: "Phone and Email support",
+      title: "Email",
+      description: "hello@sustaindecor.com",
     },
   ];
 
   return (
-    <div className=" w-full grid grid-cols-2 lg:grid-cols-4 gap-6 p-6 ">
+    <div className=" w-full grid grid-cols-2 lg:grid-cols-3 gap-10 p-12 ">
       {features.map((feature) => (
         <div
           key={feature.id}
@@ -42,4 +36,4 @@ const FeaturesSection = () => {
   );
 };
 
-export default FeaturesSection;
+export default FeatureContact;

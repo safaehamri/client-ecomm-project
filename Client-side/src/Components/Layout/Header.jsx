@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Cart, Hamburger, Search, Profile, Wishlist } from "../Common/Icons";
+import { Cart, Hamburger, Search, Profile, Wishlist } from "../Common/I";
 import Sidebar from "../Sections/Sidebar";
 import CartSidebar from "../Product/CartSidebar";
 import WishlistSidebar from "../Product/WishlistSidebar";

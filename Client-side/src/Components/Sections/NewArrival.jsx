@@ -16,18 +16,18 @@ const NewArrival = () => {
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: "",
-    severity: "success", //color
+    severity: "success", //the snackbar : when i clik on add product it displays a snakbar (au dessous ) to let the user know that the item is added or...
   });
 
   const slidesRef = useRef([]);
 
   const handleSnackbar = (message, severity) => {
     setSnackbar({ open: true, message, severity });
-  };
+  }; // POUR GERER L4OUVERTURE DU SNACK BAR
 
   const handleSnackbarClose = () => {
     setSnackbar({ ...snackbar, open: false });
-  };
+  }; // POUR GERER LA FERMETURE  DU SNACK BAR
 
   useEffect(() => {
     // Batch animation for better performance
@@ -42,7 +42,7 @@ const NewArrival = () => {
           stagger: 0.1,
           duration: 0.5,
         });
-      },
+      }, //gsap code
     });
   }, []);
 
@@ -85,14 +85,14 @@ const NewArrival = () => {
             return (
               <SwiperSlide
                 key={item.id}
-                ref={(el) => (slidesRef.current[index] = el)}
+                ref={(el) => (slidesRef.current[index] = el)} //extract  the index  know wich silde we are  in
                 style={{ width: "300px", height: "auto" }}
               >
                 <UnifiedProductCard
                   product={{ ...item, image: transformedImage }}
                   onSnackbar={handleSnackbar}
                   viewMode="grid"
-                  useNavigation={false}
+                  useNavigation={false} // ON AFFICHE les produits sous cette forme , pas la peine de faire la pagination
                 />
               </SwiperSlide>
             );
@@ -110,7 +110,7 @@ const NewArrival = () => {
         message={snackbar.message}
         severity={snackbar.severity}
       />
-    </div>
+    </div> // a discuter apres
   );
 };
 

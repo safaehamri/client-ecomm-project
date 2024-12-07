@@ -5,6 +5,8 @@ import MainLayout from "./Components/Layout/MainLayout";
 import PlaceholderPage from "./Components/Common/PlaceholderPage";
 import Home from "./Pages/Home";
 import Shop from "./Pages/Shop";
+import Product from "./Pages/Product";
+import Contact from "./Pages/Contact";
 
 export default function App() {
   return (
@@ -16,8 +18,8 @@ export default function App() {
           <Route index element={<Home />} />
           {/* Other Pages */}
           <Route path="shop" element={<Shop />} />
-          <Route path="product" element={<PlaceholderPage />} />
-          <Route path="contact" element={<PlaceholderPage />} />
+          <Route path="product/:productId" element={<Product />} />
+          <Route path="contact" element={<Contact />} />
         </Route>
       </Routes>
     </Router>
