@@ -7,9 +7,13 @@ import {
   removeFromCart,
   updateCartQuantity,
 } from "../../Redux/actions/cartActions";
+import SnackbarNotification from "../Common/SnackbarNotification";
+import { Navigate, useNavigate } from "react-router-dom";
+
 import { gsap } from "gsap";
 
 const CartSidebar = ({ isOpen, onClose }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
 
@@ -138,7 +142,12 @@ const CartSidebar = ({ isOpen, onClose }) => {
             <p>Total</p>
             <p>${subtotal.toFixed(2)}</p>
           </div>
-          <button className="w-full bg-black text-white py-2 mt-4">
+          <button
+            className="w-full bg-black text-white py-2 mt-4"
+            onClick={() => {
+              navigate(`/cart`);
+            }}
+          >
             Checkout
           </button>
           <button

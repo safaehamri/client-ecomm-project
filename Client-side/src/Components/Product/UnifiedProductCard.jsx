@@ -8,7 +8,7 @@ import {
   removeFromWishlist,
 } from "../../Redux/actions/wishlistActions";
 import ProductDialog from "../Common/ProductDialog"; // the box displayed when we click on view product
-import SnackbarNotification from "../Common/SnackbarNotification"; // a discuter §§§§
+import SnackbarNotification from "../Common/SnackbarNotification";
 import { HeartIcon, FiveStars } from "../Common/Icons";
 import { generateCloudinaryUrl } from "../../utils/cloudinaryUtils";
 
