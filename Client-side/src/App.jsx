@@ -26,11 +26,10 @@ export default function App() {
         {/* MainLayout includes shared components */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path="home" element={<home />} />
+          <Route path="home" element={<Home />} />
           <Route path="shop" element={<Shop />} />
           <Route path="product/:productId" element={<Product />} />
           <Route path="contact" element={<Contact />} />
-
           {/* Shopping Cart Routes */}
           <Route path="cart" element={<BaseLayoutCart />}>
             <Route index element={<Navigate to="shopping-cart" />} />
