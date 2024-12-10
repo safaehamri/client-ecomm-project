@@ -13,6 +13,11 @@ import ShoppingCart from "./Pages/ShoppingCart";
 import CheckoutDetails from "./Pages/CheckoutDetails";
 import OrderComplete from "./Pages/OrderComplete";
 import BaseLayoutCart from "./Components/Layout/BaseLyoutCart";
+import ProfileLayoutPage from "./Components/Layout/ProfileLayoutPage";
+import Account from "./Pages/Account";
+import AddressPage from "./Pages/AddressPage";
+import MyOrders from "./Pages/MyOrders";
+import MyWishlist from "./Pages/MyWishlist";
 
 export default function App() {
   return (
@@ -21,6 +26,7 @@ export default function App() {
         {/* MainLayout includes shared components */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
+          <Route path="home" element={<home />} />
           <Route path="shop" element={<Shop />} />
           <Route path="product/:productId" element={<Product />} />
           <Route path="contact" element={<Contact />} />
@@ -32,6 +38,14 @@ export default function App() {
             <Route path="shopping-cart" element={<ShoppingCart />} />
             <Route path="checkout" element={<CheckoutDetails />} />
             <Route path="order-complete" element={<OrderComplete />} />
+          </Route>
+          {/* profile page routes */}
+          <Route path="profile" element={<ProfileLayoutPage />}>
+            <Route index element={<Navigate to="Account" />} />
+            <Route path="Account" element={<Account />} />
+            <Route path="Address" element={<AddressPage />} />
+            <Route path="myOrders" element={<MyOrders />} />
+            <Route path="wantList" element={<MyWishlist />} />
           </Route>
         </Route>
       </Routes>

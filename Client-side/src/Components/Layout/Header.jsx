@@ -60,7 +60,7 @@ const Header = () => {
             if (!isAuthenticated()) {
               navigate("/signin");
             } else {
-              navigate("/profile");
+              navigate("/profile/Account");
             }
           }}
         >
